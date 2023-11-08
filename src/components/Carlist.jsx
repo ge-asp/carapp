@@ -5,6 +5,8 @@ import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-material.css'
 import { Button } from "@mui/material"
 import { Snackbar } from "@mui/material"
+import AddCar from "./AddCar"
+import EditCarr from "./EditCar"
 
 export default function Carlist() {
 
@@ -25,8 +27,14 @@ export default function Carlist() {
             cellRenderer: params => 
                 <Button size="small" color="error" onClick={() => deleteCar(params)}>
                     Delete
-                </Button>
-        }
+                </Button>,
+            width: 120
+
+        }/*,
+        {
+            cellRenderer: params => <EditCar params={params} updateCar={updateCar} />,
+            width: 120
+        }*/
     ]
 
     useEffect(()=> getCars(), [])
@@ -57,10 +65,27 @@ export default function Carlist() {
         .catch(error => console.error(error))
     }
 
+    const addCar = (car) => {
+        fetch(REST_URL, {
+            method: 'POST',
+            headers: { 'Content- type': 'application/json'},
+            body: JSON.stringify(car)
+        })
+            .then(response => {
+                if (response.ok)
+                    getCars()
+                else
+                    alert('Something went wrong while adding new car')
+            })
+        .catch(err => console.error(err))
+
+    }
+
 
 
     return (
         <div>
+            <AddCar addCar={addCar} />
             <div className='ag-theme-material'
             style={{height: '700px', width: '95%', margin: 'auto'}}>
                 <AgGridReact
@@ -74,7 +99,6 @@ export default function Carlist() {
                     autoHideDuration={3000}
                     onClose={() => setOpen(false)}
                     message={msg}>
-
                 </Snackbar>
             </div>
 
