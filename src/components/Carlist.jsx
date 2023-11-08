@@ -44,7 +44,7 @@ export default function Carlist() {
 
     const deleteCar = (params) => {
         console.log("params: " + params.data._links.car.href)
-        fetch(params.data._link.car.href, { method: 'DELETE' })
+        fetch(params.data._links.car.href, { method: 'DELETE' })
         .then(response => {
             if (response.ok) {
                 setMsg('Car is deleted successfully!')
