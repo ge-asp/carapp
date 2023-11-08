@@ -68,7 +68,7 @@ export default function Carlist() {
     const addCar = (car) => {
         fetch(REST_URL, {
             method: 'POST',
-            headers: { 'Content- type': 'application/json'},
+            headers: { 'Content-type': 'application/json'},
             body: JSON.stringify(car)
         })
             .then(response => {
