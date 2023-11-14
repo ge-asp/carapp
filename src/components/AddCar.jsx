@@ -44,6 +44,26 @@ export default function AddCar(props) {
                         name='model'
                         value={car.model}
                         onChange={handleInputChange} />
+                    <TextField
+                        label='Color'
+                        name='color'
+                        value={car.model}
+                        onChange={handleInputChange} />
+                    <TextField
+                        label='Fuel'
+                        name='fuel'
+                        value={car.model}
+                        onChange={handleInputChange} />
+                    <TextField
+                        label='Year'
+                        name='year'
+                        value={car.model}
+                        onChange={handleInputChange} />
+                    <TextField
+                        label='Price'
+                        name='price'
+                        value={car.model}
+                        onChange={handleInputChange} />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleSave}>Save new car</Button>

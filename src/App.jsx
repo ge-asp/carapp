@@ -10,7 +10,7 @@ function App() {
     <>
       <AppBar position='sticky'>
         <Typography variant="h6">
-        Carshop
+        Car shop
         </Typography>
       </AppBar>
       <Carlist />

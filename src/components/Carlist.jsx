@@ -87,7 +87,7 @@ export default function Carlist() {
         <div>
             <AddCar addCar={addCar} />
             <div className='ag-theme-material'
-            style={{height: '700px', width: '95%', margin: 'auto'}}>
+            style={{height: '700px', width: '100%', margin: 'auto'}}>
                 <AgGridReact
                     rowData={cars}
                     columnDefs={columns}
