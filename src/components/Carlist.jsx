@@ -6,7 +6,7 @@ import 'ag-grid-community/styles/ag-theme-material.css'
 import { Button } from "@mui/material"
 import { Snackbar } from "@mui/material"
 import AddCar from "./AddCar"
-import EditCarr from "./EditCar"
+import EditCar from "./EditCar"
 
 export default function Carlist() {
 
@@ -22,7 +22,8 @@ export default function Carlist() {
         {field: 'color'},
         {field: 'fuel'},
         {field: 'year'},
-        {field: 'price'},
+        { field: 'price' },
+        
         {
             cellRenderer: params => 
                 <Button size="small" color="error" onClick={() => deleteCar(params)}>
@@ -30,11 +31,11 @@ export default function Carlist() {
                 </Button>,
             width: 120
 
-        }/*,
+        },
         {
             cellRenderer: params => <EditCar params={params} updateCar={updateCar} />,
             width: 120
-        }*/
+        }
     ]
 
     useEffect(()=> getCars(), [])
@@ -80,6 +81,23 @@ export default function Carlist() {
         .catch(err => console.error(err))
 
     }
+    const updateCar = (url, updateCar) => {
+        fetch(url, {
+            method: 'PUT',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(updateCar)
+        })
+            .then(response => {
+                if (response.ok) {
+                    setMsg('Car updated successfully')
+                    setOpen(true)
+                    getCars()
+                } else
+                    alert('Something went wrong while updating a car' + response.statusText)
+            })
+            .catch(err => console.error(err))            
+        }
+    
 
 
 

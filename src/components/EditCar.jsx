@@ -19,19 +19,35 @@ export default function EditCar(props) {
     }
 
     const handleSave = (event) => {
-        props.addCar(car) // todo- update car
+        console.log(props.params.data._links.car.href, car)
+        props.updateCar(props.params.data._links.car.href,car)
         setOpen(false)
+    }
+
+    const handleClickOpen = () => {
+        setOpen(true)
+        setCar({
+            brand: props.params.data.brand,
+            model: props.params.data.model,
+            color: props.params.data.color,
+            fuel: props.params.data.fuel,
+            year: props.params.data.year,
+            price: props.params.data.price,
+        })
     }
 
     
     
     return (
         <>
+            <Button size="small" onClick={handleClickOpen}>
+                Edit car
+            </Button>
            
             <Dialog
                 open={open}
                 onClose={handleClose}>
-                <DialogTitle>New car</DialogTitle>
+                <DialogTitle>Edit car</DialogTitle>
                 <DialogContent>
                     <TextField
                         label='Brand'
@@ -42,6 +58,26 @@ export default function EditCar(props) {
                         label='Model'
                         name='model'
                         value={car.model}
+                        onChange={handleInputChange} />
+                    <TextField
+                        label='Color'
+                        name='color'
+                        value={car.color}
+                        onChange={handleInputChange} />
+                    <TextField
+                        label='Fuel'
+                        name='fuel'
+                        value={car.fuel}
+                        onChange={handleInputChange} />
+                    <TextField
+                        label='Year'
+                        name='year'
+                        value={car.year}
+                        onChange={handleInputChange} />
+                    <TextField
+                        label='Price'
+                        name='price'
+                        value={car.price}
                         onChange={handleInputChange} />
                 </DialogContent>
                 <DialogActions>
